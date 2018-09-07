@@ -30,6 +30,7 @@ public class FileLoader
         
          int sum=0;
          char textVar;
+         //Prueba Git
          if(lineNum == 0)//it is the first line of the maze file, create The Matrix based on first line of the maze file
          { 
              for(int i=0; i<fileTextLine.length();i++)
