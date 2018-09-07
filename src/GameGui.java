@@ -61,6 +61,7 @@ public class GameGui extends JFrame implements ActionListener
         hs = new HighScore();
         tk=new TimeKeeper();
         pack();
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible (true);//show our menu bar and shagLabel.. Yea baby Yea! Whoa.. to much java.
     }//end constructor
      
