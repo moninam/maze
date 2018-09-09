@@ -56,6 +56,7 @@ public class GameGui extends JFrame implements ActionListener
         menuBar = new JMenuBar();
         menuBar.add(newMenu);
         setJMenuBar(menuBar);
+        this.setResizable(false);
         //Add Menu Bar     
         newPanel = new JPanel();
         hs = new HighScore();
