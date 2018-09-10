@@ -105,7 +105,7 @@ public class GameGui extends JFrame implements ActionListener
         this.setResizable(false);
         //Add Menu Bar     
         newPanel = new JPanel();
-        newPanel.setPreferredSize(new Dimension(300, 300));
+        newPanel.setPreferredSize(new Dimension(500, 500));
         hs = new HighScore();
         tk=new TimeKeeper();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -244,6 +244,7 @@ public class GameGui extends JFrame implements ActionListener
              cp.add(progBarPanel,BorderLayout.NORTH);
              newPanel = new JPanel();
              newPanel.setLayout(new GridLayout(fl.getMatrixSizeRow(),fl.getMatrixSizeColumn()));//set our panel for the game to the size of the matrix      
+             newPanel.setPreferredSize(new Dimension(500, 500));
              labelMatrix=new JLabel[fl.getMatrixSizeRow()][fl.getMatrixSizeColumn()];
              newPanel.addKeyListener( new MyKeyHandler() );
         }//end if
@@ -253,6 +254,7 @@ public class GameGui extends JFrame implements ActionListener
             remove(newPanel);//remove the old game
             newPanel = new JPanel();
             newPanel.setLayout(new GridLayout(fl.getMatrixSizeRow(),fl.getMatrixSizeColumn()));
+            newPanel.setPreferredSize(new Dimension(500, 500));
             newPanel.addKeyListener( new MyKeyHandler() );
             newPanel.grabFocus();        
         }
