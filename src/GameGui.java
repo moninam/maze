@@ -18,22 +18,66 @@ public class GameGui extends JFrame implements ActionListener
         super("Maze, a game of wondering"); //call super to initilize title bar of G.U.I.
         absolutePath = "./laberintos/"; //Se obtiene el path del nivel actual
         cp=getContentPane();
-        shagLabel = new JLabel("",new ImageIcon("./Imagenes/yeababyyea.jpg"),JLabel.LEFT);//GUI background for initial load
+        myButton = new JButton("Nueva Partida");
+        loadGame = new JButton("Cargar Partida");
+        exit = new JButton("Salir");
+        shagLabel = new JLabel("",new ImageIcon("./Imagenes/laberinto.jpg"),JLabel.LEFT);//GUI background for initial load
+        GroupLayout labelLayout = new GroupLayout(shagLabel);
+        shagLabel.setLayout(labelLayout);
+        labelLayout.setHorizontalGroup(
+                labelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addGroup(labelLayout.createSequentialGroup()
+                .addGap(160,160,160)
+                .addGroup(labelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                .addComponent(exit)
+                .addComponent(loadGame)
+                .addComponent(myButton))
+                        .addContainerGap(168,Short.MAX_VALUE))
+        );
+        labelLayout.setVerticalGroup(
+                labelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(GroupLayout.Alignment.TRAILING, labelLayout.createSequentialGroup()
+                                .addContainerGap(148, Short.MAX_VALUE)
+                                .addComponent(myButton)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(loadGame)
+                                .addGap(18, 18, 18)
+                                        .addComponent(exit)
+                            .addGap(35, 35, 35))
+        );
         cp.add(shagLabel);
         //Add Exit & New Game Menu Items
-        itemExit = new JMenuItem("Exit");
+        myButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                newGame();
+            }
+        });
+        loadGame.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               JOptionPane.showMessageDialog(null,"Proximamente");
+            }
+        });
+        exit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                GameGui.super.dispose();
+            }
+        });
+        itemExit = new JMenuItem("Salir");
         itemExit.setAccelerator (KeyStroke.getKeyStroke (KeyEvent.VK_X, KeyEvent.CTRL_MASK));//press CTRL+X to exit if you want
-        itemSaveScore = new JMenuItem("Save High Score");
+        itemSaveScore = new JMenuItem("Guardar Puntaje");
         itemSaveScore.setAccelerator (KeyStroke.getKeyStroke (KeyEvent.VK_S, KeyEvent.CTRL_MASK));//press CTRL+S to save high score if you want
-        itemHighScore=new JMenuItem("High Score");
+        itemHighScore=new JMenuItem("Tablero de puntajes");
         itemHighScore.setAccelerator (KeyStroke.getKeyStroke (KeyEvent.VK_H, KeyEvent.CTRL_MASK));//press CTRL+H to view high score if you want
-        itemEnterName = new JMenuItem("Enter Player Name");
+        itemEnterName = new JMenuItem("Introducir nombre del jugador");
         itemEnterName.setAccelerator (KeyStroke.getKeyStroke (KeyEvent.VK_N, KeyEvent.CTRL_MASK));//press CTRL+N to enter your name if you want
-        newGameItem = new JMenuItem("New Game");
-        openFileItem = new JMenuItem("Open Maze File.");
-        openFileItem.setAccelerator (KeyStroke.getKeyStroke (KeyEvent.VK_O, KeyEvent.CTRL_MASK));//press CTRL+O to open a level if you want
-        newGameItem.setActionCommand("New Game");
-        newGameItem.addActionListener(this);
+        //newGameItem = new JMenuItem("New Game");
+        //openFileItem = new JMenuItem("Open Maze File.");
+        //openFileItem.setAccelerator (KeyStroke.getKeyStroke (KeyEvent.VK_O, KeyEvent.CTRL_MASK));//press CTRL+O to open a level if you want
+        //newGameItem.setActionCommand("New Game");
+        //newGameItem.addActionListener(this);
         itemEnterName.setActionCommand("EnterName");
         itemEnterName.addActionListener(this);
         itemSaveScore.setActionCommand("SaveScore");
@@ -42,12 +86,13 @@ public class GameGui extends JFrame implements ActionListener
         itemHighScore.addActionListener(this);
         itemExit.setActionCommand("Exit");
         itemExit.addActionListener(this);
-        openFileItem.setActionCommand("Open");
-        openFileItem.addActionListener(this);
-        newMenu = new JMenu("File");
-        newMenu.add(newGameItem);
+        //openFileItem.setActionCommand("Open");
+        //openFileItem.addActionListener(this);
+        newMenu = new JMenu("Opciones");
+
+        //newMenu.add(newGameItem);
         newMenu.add(itemEnterName);
-        newMenu.add(openFileItem);
+        //newMenu.add(openFileItem);
         newMenu.add(itemHighScore);
         newMenu.add(itemSaveScore);
         newMenu.add(itemExit);
@@ -309,6 +354,10 @@ private JMenuItem openFileItem;
 private JMenuItem itemEnterName;
 private JMenuItem itemHighScore;
 private JMenuItem itemSaveScore;
+private JButton myButton;
+private JButton loadGame;
+private JButton exit;
+
 //end create menu items
 private JLabel shagLabel;
 private int ix;
