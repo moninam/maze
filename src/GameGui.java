@@ -133,7 +133,7 @@ public class GameGui extends JFrame implements ActionListener
         }
         else if (e.getActionCommand().equals("New Game"))//new game on the menu bar
         {
-             return; //maybe implent this feature later
+             newGame(); //maybe implent this feature later
         }//end New Game Command
         else if(e.getActionCommand().equals("EnterName"))//Allows user to enter their name for high score
         {
@@ -162,7 +162,16 @@ public class GameGui extends JFrame implements ActionListener
             }
          }
      }//end actionPerformed method
-     
+
+    /**
+     * Metodo que inicializa un nuevo juego , sin necesidad de cargar el laberinto
+     */
+    public void newGame() {
+        String path = absolutePath+"level1.maz";
+        fl.loadFile(path);
+        theArc.setExit(fl.ExitXCord(),fl.ExitYCord());
+        loadMatrixGui("newLoad");
+    }
      public void loadMatrixGui(String event)
      {
         if (event == "newLoad")
