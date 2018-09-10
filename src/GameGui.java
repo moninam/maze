@@ -16,6 +16,7 @@ public class GameGui extends JFrame implements ActionListener
     {
 
         super("Maze, a game of wondering"); //call super to initilize title bar of G.U.I.
+        absolutePath = "./laberintos/"; //Se obtiene el path del nivel actual
         cp=getContentPane();
         shagLabel = new JLabel("",new ImageIcon("./Imagenes/yeababyyea.jpg"),JLabel.LEFT);//GUI background for initial load
         cp.add(shagLabel);
@@ -50,7 +51,7 @@ public class GameGui extends JFrame implements ActionListener
         newMenu.add(itemHighScore);
         newMenu.add(itemSaveScore);
         newMenu.add(itemExit);
-        
+
         //Add Exit Menu Item
         //Add Menu Bar
         menuBar = new JMenuBar();
@@ -59,10 +60,13 @@ public class GameGui extends JFrame implements ActionListener
         this.setResizable(false);
         //Add Menu Bar     
         newPanel = new JPanel();
+        newPanel.setPreferredSize(new Dimension(300, 300));
         hs = new HighScore();
         tk=new TimeKeeper();
-        pack();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        pack();
+
+
         setVisible (true);//show our menu bar and shagLabel.. Yea baby Yea! Whoa.. to much java.
     }//end constructor
      
@@ -232,8 +236,9 @@ public class GameGui extends JFrame implements ActionListener
         theArc = new TheArchitect();//flush everything from TheArchitect so we dont get goffee results
         catFileName+=01;//the next file to be loaded (number)
         String fileName="level"+catFileName+".maz";
+        String path = absolutePath+fileName;
         System.gc();
-        fl.loadFile(fileName);//load the file we need
+        fl.loadFile(path);//load the file we need
         scrapMatrix=fl.getGameMatrix();//get the new matrix from the fileloader for the next level.
         theArc.setExit(fl.ExitXCord(),fl.ExitYCord());
         loadMatrixGui("newLoad");         
@@ -280,8 +285,9 @@ public class GameGui extends JFrame implements ActionListener
             JOptionPane.showMessageDialog(frame, "You Stupid Ass, Did you eat to much for dinner?  Move Faster!");//the entire game has ended.
         }
     }//end class
-    
-private HighScore hs;  
+
+
+private HighScore hs;
 private int catFileName=01;
 private Container cp;
 private FileLoader fl = new FileLoader();
@@ -311,4 +317,5 @@ private  Timer timely;
 private TimeKeeper tk;
 private  String playerName;
 private int levelNum=1;
+private String absolutePath;
 }//end class    
